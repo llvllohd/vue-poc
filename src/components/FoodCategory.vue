@@ -8,7 +8,7 @@
             <router-link :to="i.link">{{ i.category }}</router-link>
           </a>
         </li>
-        <li>
+        <li class="menu">
           <a v-on:click="display">
             <router-link to="#">More</router-link>
             <span>
@@ -89,6 +89,12 @@ li a.router-link-exact-active {
 
 .caretdown {
   margin-left: 0.5rem;
+}
+
+.dropdown {
+  display: flex;
+  background-color: red;
+  flex-direction: column;
 }
 
 @media (max-width: 550px) {

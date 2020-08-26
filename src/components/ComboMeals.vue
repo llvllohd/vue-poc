@@ -40,6 +40,7 @@ export default {
   mounted() {
     this.axios
       .get("https://my-json-server.typicode.com/llvllohd/json/combomeals")
+      // .get("http://localhost:3000/combomeals")
       .then((resp) => {
         this.products = resp.data;
       });
@@ -58,6 +59,7 @@ export default {
   margin-bottom: 1rem;
 }
 .wrapper {
+  min-height: 25rem;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

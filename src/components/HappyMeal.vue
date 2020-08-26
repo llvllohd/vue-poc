@@ -58,6 +58,7 @@ export default {
   margin-bottom: 1rem;
 }
 .wrapper {
+  min-height: 25rem;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
