@@ -16,111 +16,60 @@
       </div>
     </div>
     <div class="borderdown"></div>
-    <FoodCategory v-bind:data="menu" />
+    <FoodItems  v-bind:items="items" />
   </div>
 </template>
 
 <script>
-import FoodCategory from "./FoodCategory";
+import Vue from "vue";
+import axios from "axios";
+import VueAxios from "vue-axios";
+Vue.use(VueAxios, axios);
+import FoodItems from "./FoodItems";
 export default {
   name: "Dropdown",
   components: {
-    FoodCategory,
+    FoodItems,
   },
   data() {
     return {
-      menu: [],
+      categories: [],
+      jsonData: [],
+
+      items: [],
+      name: null,
     };
   },
-  mounted() {
-    this.breakfast();
+  created() {
+    this.axios.get("https://my-json-server.typicode.com/llvllohd/json/data").then((res) => {
+      this.jsonData = res.data;
+      this.categories = this.jsonData.categories[0].menus;
+
+      this.name= this.jsonData.categories[0].name;
+      this.items = this.jsonData.categories[0].menuitems;
+    });
   },
   methods: {
     breakfast() {
-      const breakfast = [
-        {
-          category: "Most Popular",
-          link: "/",
-        },
-        {
-          category: "McCafe Bakery",
-          link: "mccafebakery",
-        },
-        {
-          category: "Condiments",
-          link: "condiments",
-        },
-        {
-          category: "Promotions",
-          link: "promotions",
-        },
-        {
-          category: "Bevarages",
-          link: "bevarages",
-        },
-      ];
+      const breakfast = this.jsonData.categories[0].menus;
+      this.categories = breakfast;
 
-      this.menu = breakfast;
+      this.name= this.jsonData.categories[0].name;
+      this.items = this.jsonData.categories[0].menuitems;
     },
     lunch() {
-      const lunch = [
-        {
-          category: "Most Popular",
-          link: "/",
-        },
+      const lunch = this.jsonData.categories[1].menus;
+      this.categories = lunch;
 
-        {
-          category: "Combo Meals",
-          link: "combomeals",
-        },
-        {
-          category: "Promotions",
-          link: "promotions",
-        },
-        {
-          category: "Happy Meal",
-          link: "happymeal",
-        },
-        {
-          category: "McCafe",
-          link: "mccafe",
-        },
-        {
-          category: "McCafe Bakery",
-          link: "mccafebakery",
-        },
-      ];
-      this.menu = lunch;
+      this.name= this.jsonData.categories[1].name;
+      this.items = this.jsonData.categories[1].menuitems;
     },
     dinner() {
-      const dinner = [
-        {
-          category: "Most Popular",
-          link: "/",
-        },
+      const dinner = this.jsonData.categories[2].menus;
+      this.categories = dinner;
 
-        {
-          category: "Combo Meals",
-          link: "combomeals",
-        },
-        {
-          category: "Promotions",
-          link: "promotions",
-        },
-        {
-          category: "Sweets&Treats",
-          link: "sweets&treats",
-        },
-        {
-          category: "HappyMeal",
-          link: "happymeal",
-        },
-        {
-          category: "condiments",
-          link: "condiments",
-        },
-      ];
-      this.menu = dinner;
+      this.name= this.jsonData.categories[2].name;
+      this.items = this.jsonData.categories[2].menuitems;
     },
   },
 };

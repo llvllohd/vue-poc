@@ -4,10 +4,6 @@
     <RestaurantDetails />
     <Address />
     <Dropdown />
-    <FoodCatogery />
-    <!-- <MostPopular /> -->
-    <!-- <ComboMeals /> -->
-    <router-view />
   </div>
 </template>
 
@@ -16,9 +12,6 @@ import Banner from "./components/Banner";
 import RestaurantDetails from "./components/RestaurantDetails";
 import Address from "./components/Address";
 import Dropdown from "./components/Dropdown";
-// import FoodCatogery from "./components/FoodCategory";
-// import MostPopular from "./components/MostPopular";
-// import ComboMeals from "./components/ComboMeals";
 export default {
   name: "App",
   components: {
@@ -26,9 +19,10 @@ export default {
     RestaurantDetails,
     Address,
     Dropdown,
-    // FoodCatogery,
-    // MostPopular,
-    // ComboMeals,
+  },
+  methods: {},
+  data() {
+    return {};
   },
 };
 </script>

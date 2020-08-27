@@ -2,7 +2,7 @@
   <div class="container">
     <!-- ---------------------------------------------- -->
     <div class="row">
-      <h1 class="name">McDonald's</h1>
+      <h1 class="name">{{title}}</h1>
       <div class="details">
         <span class="check-circle">
           <fa-icon
@@ -53,8 +53,26 @@
 </template>
 
 <script>
+import vue from 'vue'
+import axios from 'axios'
+import vueaxios from 'vue-axios'
+vue.use(axios,vueaxios)
 export default {
   name: "RestaurantDetails",
+  data(){
+    return{
+        title: null
+    }
+  },
+  methods:{
+
+  },
+  mounted(){
+    this.axios.get('https://my-json-server.typicode.com/llvllohd/json/data')
+    .then((res) =>{
+      this.title = res.data.info.title
+    })
+  }
 };
 </script>
 

@@ -1,22 +1,18 @@
 <template>
   <div class="container">
-    <div class="category-name">
-      <h2>Condiments</h2>
-    </div>
+    <!-- <div  class="category-name"> -->
+    <!-- <h2>{{ data }}</h2> -->
+    <!-- </div> -->
 
     <div class="wrapper">
-      <div
-        class="food-container"
-        v-for="product in products"
-        v-bind:key="product.id"
-      >
+      <div class="food-container" v-for="item in items" v-bind:key="item.id">
         <div class="item-details">
-          <h2>{{ product.name }}</h2>
-          <h3>{{ product.cal }}</h3>
-          <h4>{{ product.amount }}</h4>
+          <h2>{{ item.name }}</h2>
+          <h3>{{ item.cal }}</h3>
+          <h4>{{ item.amount }}</h4>
         </div>
         <div class="img">
-          <img :src="product.image" />
+          <img :src="item.image" />
         </div>
       </div>
       <!-- --------------------------- -->
@@ -31,20 +27,14 @@ import VueAxios from "vue-axios";
 Vue.use(VueAxios, axios);
 
 export default {
-  name: "Condiments",
+  name: "FoodItems",
+  props: ["items"],
   data() {
     return {
       products: [],
     };
   },
-  mounted() {
-    this.axios
-      .get("https://my-json-server.typicode.com/llvllohd/json/promotions")
-      .then((resp) => {
-        this.products = resp.data;
-      });
-  },
-  method: {},
+  methods: {},
 };
 </script>
 
@@ -64,6 +54,7 @@ export default {
   flex-wrap: wrap;
   justify-content: space-between;
   margin-bottom: 1rem;
+  margin-top: 1rem;
   margin-left: 2rem;
   margin-right: 2rem;
 }
@@ -81,6 +72,7 @@ export default {
   border: 1px solid rgb(214, 214, 214);
   margin-bottom: 1.3rem;
   border-radius: 0.5rem;
+  /* margin-right: 0.5rem; */
 }
 
 .food-container .item-details {
@@ -125,15 +117,9 @@ export default {
 }
 
 .food-container .img img {
-  /* object-fit: cover; */
   width: 90%;
   height: 100%;
   margin-left: 1rem;
-  /* object-fit: cover;
-  z-index: -1;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center; */
 }
 
 @media (max-width: 995px) {
